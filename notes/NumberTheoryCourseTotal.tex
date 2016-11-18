@@ -573,23 +573,46 @@ Let $F$ and $f$ be connected by \[F(n)=\sum_{d \mid n} f(d).\]
 Then 
 \[ f(n)=\sum_{d\mid n} \mu(d) F(\frac{n}{d}) = \sum_{d \mid n} \mu(\frac{n}{d}) F(d)\]
 \begin{proof}
-				\[ \sum_{d\mid n} \mu(d) F(\frac{n}{d}) = \sum_{d \mid n} \mu(d)(\sum_{c\mid \frac{n}{d}} f(c))\]
-				\[ = \sum_{\substack{
-													d\mid n\\
-													c\mid \frac{n}{d}\\}}
-						\mu(d) f(c)= \sum_{\substack{
-													c\mid n\\
-													d\mid \frac{n}{c}\\}}
-						\mu(d) f(c)
-													\]
-				\[ = \sum_{c \mid n} f(c)\underbrace{(\sum_{d \mid \frac{n}{c}} \mu(d))}_{\left \{
-										\begin{array}{ccc}
-										1 \text{ if } n=c\\
-										0 \text{ if } n>c\\
-										\end{array}
-							\right.}
+	We first show that the two sums are indeed equal. Set $d'=\frac{n}{d}$. As $d$ ranges over all the divisors of $n$, so does $d'$. Thus, 
+	\begin{equation*}
+	\begin{aligned}
+	\sum_{d\mid n} \mu(d) F(\frac{n}{d})&=\sum_{d\mid n} \mu(\frac{n}{d'}) F(d')\\
+	&=\sum_{d'\mid n} \mu(\frac{n}{d'}) F(d')
+	\end{aligned}
+	\end{equation*} 
+	Furthermore, we have
+	\begin{equation}\label{mobiussums}
+	\begin{aligned}
+	\sum_{d\mid n} \mu(d) F(\frac{n}{d}) &= \sum_{d\mid n}\left(\mu(d)\sum_{c\mid \frac{n}{d}}f(c) \right)\\
+	&= \sum_{d\mid n}\left(\sum_{c\mid \frac{n}{d}}\mu(d)f(c) \right)
+	\end{aligned}
+	\end{equation}
+	We note that
+	\begin{equation*}
+	d\mid n \wedge c\mid\frac{n}{d} \quad \Leftrightarrow \quad c\mid n \wedge d\mid \frac{n}{c}
+	\end{equation*}
+	Thus, we can rewrite \eqref{mobiussums} as follows
+	\begin{equation}\label{mobiussums2}
+	\begin{aligned}
+	\sum_{d\mid n}\left(\sum_{c\mid \frac{n}{d}}\mu(d)f(c) \right)&= \sum_{c\mid n}\left(\sum_{d\mid \frac{n}{c}}\mu(d)f(c) \right)\\
+	&= \sum_{c\mid n}\left(f(c)\sum_{d\mid \frac{n}{c}}\mu(d) \right)
+	\end{aligned}
+	\end{equation}
+	As by our previous theorem,
+				\[ \sum_{d \mid n} \mu(d) = \left \{
+				\begin{array}{lcl}
+				1 \quad n=1\\
+				0 \quad n>1\\
+				\end{array}
+				\right.
 				\]
-				\[=f(n)\cdot 1 +f(c_1)\cdot 0+ \dots +f(c_k) \cdot 0 = f(n)\]
+	the last sum in \eqref{mobiussums2} reduces to 
+	\begin{equation*}
+	\begin{aligned}
+	\sum_{c=n}\left(f(c)\sum_{d\mid \frac{n}{c}}\mu(d) \right) &= \sum_{c=n}f(c)\cdot 1\\
+	&=f(n)
+	\end{aligned}
+	\end{equation*}	
 \end{proof}
 \underline{Example:} \\
 $\sigma(n) = \sum_{c \mid n} d ; \qquad f(n)=n$\\
