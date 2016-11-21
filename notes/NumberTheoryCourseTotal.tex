@@ -17,6 +17,7 @@
 \usepackage{mathrsfs}
 \usepackage{enumitem}
 
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\nequiv}{\cancel{\equiv}}
 \newcommand{\up}[1]{\textsuperscript{#1}}
 \DeclareMathOperator{\ord}{ord}
@@ -37,10 +38,10 @@
 \subsection*{Congruences and properties of Congruences}
 Let $a,n \in \mathbb{Z},$ then $n$ divides $a$ if $\exists b/\; a=nb$,$\qquad b \in \mathbb{Z}$.\\
 $n$ is a divisor of $a$.
-\begin{defi} $p \in \mathbb{Z}$ is a prime number if $p > 1$ and $\pm1$;$\pm p$ are the only divisors of $p$.
+\begin{defi} $p \in \mathbb{Z}$ is a \textbf{prime number} if $p > 1$ and $\pm1$, $\pm p$ are the only divisors of $p$.
 \end{defi}
 \begin{defi} $a,b,n \in \mathbb{Z}, \; n\geq 1$. \\
-$a$ is congruent to $b$ modulo $n \iff n \mid (a-b) \iff a-b=nk$.\\
+$a$ is \textbf{congruent to} $\textbf{b}$ \textbf{modulo} $\textbf{n} \iff n \mid (a-b) \iff a-b=nk$.\\
 We then write: $a\equiv b \pmod n$ or $a \equiv b [n]$.
 \end{defi}
 \underline{Example:}
@@ -280,21 +281,40 @@ x_3=1\\
 \end{array}
 \]
 \newpage
-\large \textbf{Fermat's theorem}: \normalsize
+\subsection*{Fermat's theorem}
 Let $p$ be a prime, $a \in \mathbb{Z} / \quad p \cancel{\mid} a$. Then,
 \[ a^{p-1} \equiv 1 [p] \]
 
 
 \begin{proof}
-Consider $a,2a,\dots,(p-1)a \equiv 0 [p]$ and assume $1 \leq r < s \leq p-1$ with $ra \equiv sa [p]$.\\
-Then $p \mid (ra-sa) = (r-s)a$ but $p \cancel{\mid} a \Rightarrow p \mid (r-s)$\\
-$(r-s)$ must be congruent to all integers $<p$ in some order. Let's multiply them all:\\
-\[ a\cdot 2a \dots (p-1)a \equiv 1 \cdot 2 \dots (p-1)[p] \]
-\[ a^{p-1}(p-1)! \equiv (p-1)![p]\]
-\[ \Rightarrow a^{p-1} \equiv 1 [\frac{p}{d}] ; \qquad d=\gcd(p,(p-1))=1 \]
+We claim that the elements in the set 
+\begin{equation*}
+S = \{ka \mid k = 1, 2, \dots, p-1\}
+\end{equation*}
+are all mutually incongruent modulo $p$. Assume that $1\leq k_1 < k_2 \leq p-1$ and that
+\begin{equation*}
+k_1a\equiv k_2a[p]
+\end{equation*}
+As $\gcd(a, p) = 1$, we can cancel $a$ from both sides of the equivalence, obtaining
+\begin{equation*}
+k_1\equiv k_2 [p],
+\end{equation*}
+contradicting $1\leq k_1 < k_2 \leq p-1$. Hence, our claim is valid.\\
+As $S$ contains exactly $p-1$ elements, each one is congruent to exactly one of $\{1, 2,\dots, p-1\}$ in some order. Hence, we have that
+\begin{equation*}
+a\cdot 2a\cdots (p-1)a \equiv 1\cdot 2\cdots (p-1)[p]
+\end{equation*}
+and after some rearranging of the factors in the left hand side, we obtain
+\begin{equation*}
+a^{p-1}(p-1)!\equiv (p-1)![p].
+\end{equation*}
+As $\gcd(p, (p-1)!)=1$, we can cancel $(p-1)!$ from both sides of the equivalence, obtaining
+\begin{equation*}
+a^{p-1}\equiv 1[p]
+\end{equation*}
 \end{proof}
-\underline{Corollary:} if $p$ is prime, $a \in \mathbb{Z}$, \[ a^p \equiv a [p] \]
-\begin{defi} $n$ is composite if $n>1$ and $n=ab$ with $a,b \in (1,n)$.
+\underline{Corollary:} If $p$ is prime, and $a \in \mathbb{Z}$, then \[ a^p \equiv a [p] \]
+\begin{defi} $n$ is \textbf{composite} if $n>1$ and $n=ab$ with $a,b \in (1,n)$.
 \end{defi}
 \begin{defi} If for some $a \in \mathbb{Z}$, $a^n \cancel{\equiv}a [n]$, then $n$ is not prime.\\
 n is called an absolute pseudoprime if n is composite and \[a^{n-1} \equiv 1[n], \quad \forall a\in \{k\in\mathbb{Z}\mid\gcd(k,n)=1 \}\]
@@ -312,8 +332,7 @@ n is called an absolute pseudoprime if n is composite and \[a^{n-1} \equiv 1[n],
 \subsection*{Wilson's theorem}
 If $p$ is a prime, then $(p-1)! \equiv -1[p]$
 \begin{proof}
-Let $a \in \{ 1,2,\dots,(p-1) \} \qquad  (\mathbb{Z}/\mathbb{Z}p)*$\\
-$\Rightarrow \; \exists ! a' \in (\mathbb{Z}/\mathbb{Z}p)* /$
+Let $a \in \{ 1,2,\dots,(p-1) \}$. Then $\exists ! a' \in \{ 1,2,\dots,(p-1) \}$ such that
 \[ aa' \equiv 1 [p] \]
 If $a=a'$ then $a=1$ or $a=p-1$ because:
 \[
@@ -357,7 +376,7 @@ Let $a$ be a solution of $a^2 \equiv -1[p]$. We first note that $p\cancel{\mid}a
 \Rightarrow &a^{p-1}&\equiv (-1)^{\frac{p-1}{2}}[p]
 \end{array}
 \]
-By Fermat's, we have that \[a^{p-1}\equiv 1 [p]\] which implies \[2\mid \frac{p-1}{2}\quad \Rightarrow \quad 4\mid p-1\quad \Rightarrow \quad p\equiv 1[4].\]
+By Fermat's theorem, we have that \[a^{p-1}\equiv 1 [p]\] which implies \[2\mid \frac{p-1}{2}\quad \Rightarrow \quad 4\mid p-1\quad \Rightarrow \quad p\equiv 1[4].\]
 \underline{$\Leftarrow$}\\
 \[
 \begin{array}{l c l}
@@ -379,9 +398,20 @@ By Wilson's theorem, \begin{equation*}
 and as $4\mid p-1$, $p=4k + 1$ for some $k\in \mathbb{Z}$, and so \begin{equation*}
 \begin{aligned}
 (-1)^{\frac{p-1}{2}}&=(-1)^{\frac{4k + 1-1}{2}}\\
-&=1
+&=1.
 \end{aligned}
 \end{equation*}
+Hence, 
+\begin{equation*}
+-1\equiv\left[\left(\frac{p-1}{2}\right)!\right]^2[p]
+\quad\iff\quad
+\left[\left(\frac{p-1}{2}\right)!\right]^2+1\equiv 0[p],
+\end{equation*}
+so
+\begin{equation*}
+x=\left(\frac{p-1}{2}\right)!
+\end{equation*}
+is a solution to the equation.
 \end{proof}
 \underline{Example:} 
 \[
@@ -413,19 +443,8 @@ The number theoretic functions which we will use the most are:
 \]
 \textbf{Observation:} Let $n>1$ with  $n=p_1^{k_1} \cdots p_n^{k_n}$ where each $p_i$ is a distinct prime.\\
 Then the positive divisors of n are exactly
-\[d=p_1^{a_1} \cdots p_r^{a_r},\quad 0 \leq a_i \leq k_i, \quad 1\leq i\leq r \]
-\[d\mid n \iff n=dd' \qquad \qquad \qquad d' \in \mathbb{Z}\]
-\[\Rightarrow d' = p_1^{b_1}\cdots p_r^{b_r}\]
-And therefore \[ n=dd' = p_1^{a_1+b_1} \cdots p_r^{a_r+b_r} \quad \text{ with } 
-					\left \{
-					\begin{array}{l c l} 
-					a_i+b_i=k_i\\
-					0 \leq a_i \leq b_i\\
-					\end{array}
-					\right.
-\]
-\newpage
-\begin{thm} Let $n=p_1^{k_1} \cdots p_r^{k_r} \quad n>1$ \\
+\[d=p_1^{a_1} \cdots p_r^{a_r},\quad 0 \leq a_i \leq k_i, \quad 1\leq i\leq r. \]
+\begin{thm} Let $n>1$ with $n=p_1^{k_1} \cdots p_r^{k_r}$. Then \\
 	\begin{enumerate}
 		\item $\tau(n)=(k_1+1) \cdots (k_r+1)$
 		\item $\sigma(n)=(\frac{p_1^{k_1+1}-1}{p_1-1})\dots(\frac{p_r^{k_r+1}-1}{p_r-1})$
@@ -470,9 +489,9 @@ In general we have
 		\]
 	where $d_1\mid m_1$ and $d_2\mid m_2$. Thus, $d\in \mathcal{D}$.
 \end{proof}
-\begin{thm} Let f be a multiplicative number theoric function and define $F(n)$ by:
+\begin{thm} Let f be a multiplicative number theoretic function and define $F(n)$ by:
 			\[F(n)= \sum_{d\mid n} f(d), \qquad n \geq 1 \]
-			Then $F$ is also a multiplicative number theoric funtion.
+			Then $F$ is also a multiplicative number theoretic function.
 \end{thm}
 \begin{proof}
 	Assume $\gcd(m,n)=1$. Then
@@ -502,7 +521,7 @@ In general we have
 	\[ \mu(n)= 	\left \{
 						\begin{array}{lcl}
 							1 \quad \qquad\text{ if } n=1\\
-							0 \quad \qquad \text{ if } \exists p \text{ prime s.t. } p^2 \mid n\\
+							0 \quad \qquad \text{ if } \exists p \text{ prime such that } p^2 \mid n\\
 							(-1)^r \quad \text{ if }n=p_1p_2 \dots p_r \text{,  with distinct primes.}
 						\end{array}
 						\right.
@@ -623,31 +642,67 @@ M\"{o}bius inverse: \[ n= \sum_{d \mid n} \mu(\frac{n}{d}) \sigma(d)\]
 \end{thm}
 \begin{proof}
 		Let $\gcd(m,n)=1$. Then 
-													\[ f(mn)=\sum_{d \mid mn} \mu(d) F(\frac{mn}{d})\]
-													\[\sum_{\substack{d_1 \mid m \\ d_2 \mid n}} \mu(d_1 d_2) F(\frac{m}{d_1} \frac{n}{d_2})\]
-													\[\sum_{\substack{d_1 \mid m \\d_2 \mid n}} \mu(d_1) \mu(d_2) F(\frac{m}{d_1} \frac{n}{d_2})\]
-													\[(\sum_{d_1 \mid m} \mu(d_1) F(\frac{m}{d_1})) \times (\sum_{d_2 \mid n} \mu(d_2) F(\frac{n}{d_2}))\]
-													\[=f(n)f(m)\]
+\begin{equation*}
+\begin{aligned}
+f(mn)&=\sum_{d \mid mn} \mu(d) F(\frac{mn}{d})\\
+&=\sum_{\substack{d_1 \mid m\\d_2 \mid n}} \mu(d_1 d_2) F(\frac{m}{d_1} \frac{n}{d_2})\\
+&=\sum_{\substack{d_1 \mid m \\d_2 \mid n}} \mu(d_1) \mu(d_2) F(\frac{m}{d_1})F(\frac{n}{d_2})\\
+&=\left(\sum_{d_1 \mid m} \mu(d_1) F(\frac{m}{d_1})\right) \left(\sum_{d_2 \mid n} \mu(d_2) F(\frac{n}{d_2})\right)\\
+&=f(n)f(m)		
+\end{aligned}
+\end{equation*}
+													
+																										
+													
 \end{proof}
-\textbf{\underline{Euler's $\varphi$ fonction:}} $n\geq 1 \; \varphi(n)=$ the number of integers in $\{1,2,\dots,n\}$ that are relatively prime to $n$:
-													\[=\mid \{ a \in \mathbb{Z}/ 1 \leq a \leq \: \gcd(a,n)=1 \} \mid \]
-\underline{Example:} $n= 18 \quad \{1,5,7,11,13,17\} \rightarrow \varphi(18)=6$\\
+\subsection*{Euler's $\varphi$ function} 
+For $n\geq 1$ Euler's $\varphi$ function is defined as $\varphi(n)=$ the number of integers in $\{1,2,\dots,n\}$ that are relatively prime to $n$. In other words,
+													\[\varphi(n)=\mid \{ a \in \mathbb{Z} :1 \leq a \leq n,\quad \gcd(a,n)=1 \} \mid \]
+\underline{Example:} Let $n = 18$. Then $\{ a \in \mathbb{Z} :1 \leq a \leq n,\quad \gcd(a,n)=1 \} = \{1,5,7,11,13,17\}$, so $\varphi(18)=6$\\
 \begin{thm}
 				For $p$ prime, $k>0$:
 															\[\varphi(p^k)=p^k-p^{k-1}=p^k(1-\frac{1}{p})\]
 \end{thm}
 \begin{proof}
 				\[\gcd(n,p^k)=1 \iff p \cancel{\mid} n\]
-				The multiples of $p$ in $\{1 \dots p^k\}$ are $1,\dots, p, 2p, \dots,p^{k-1}$\\
-				that means $p^{k-1}$ numbers.\\
-				Hence: \[\varphi(p^k) =p^k-p^{k-1}=p^k(1-\frac{1}{p})\]
+				The multiples of $p$ in $[1, p^k]$ are $p, 2p, \dots,pp, \dots, p^{k-1}p$, adding up to $p^{k-1}$ numbers.\\
+				Hence \[\varphi(p^k) =p^k-p^{k-1}=p^k(1-\frac{1}{p})\]
 \end{proof}
 \underline{Lemma :} For $a,b,c \in \mathbb{Z},\; \gcd(a,bc)=1 \iff \gcd(a,b)=1=\gcd(a,c)$.
 \begin{proof}
 		\underline{$\Rightarrow$} Trivial.\\
-		\underline{$\Leftarrow$} Each prime factor in $a$ is distinct from every prome factor in $b$ and in $c$. Hence $\gcd(a,bc)=1$
+		\underline{$\Leftarrow$} Each prime factor in $a$ is distinct from every prime factor in $b$ and in $c$. Hence $\gcd(a,bc)=1$.
 \end{proof}
 \begin{thm} $\varphi$ is multiplicative.
+\begin{proof}
+Let $m, n\in \Z$ with $\gcd(m, n) = 1$. Since $\varphi(1)=1$, the result holds when $m=1$ or $n=1$.\\
+Let $m>1, n>1$ and construct a table consisting of all numbers $1, \dots, mn$ in the following way
+\begin{equation}\label{eulermatrix}
+\begin{array}{rrrrrr}
+1 & 2 & \cdots & r & \cdots & m\\
+m + 1 & m + 2 & & m + r & & 2m\\
+2m + 1 & 2m + 2 & & 2m + r & & 3m\\
+\vdots & \vdots & & \vdots && \vdots\\
+(n-1)m + 1 & (n-1)m + 2 & & (n-1)m + r & &nm
+\end{array}
+\end{equation}
+We know that $\varphi(mn)$ is equal to the number of entries in the table which are relatively prime to $mn$ and by our previous lemma, this is the same as the number of entries which are relatively prime to both $m$ and $n$.\\
+We note that $\gcd(qm + r, m) = \gcd(r, m)$, so the numbers in the $r$th column are relatively prime to $m$ if and only if $\gcd(r, m) = 1$. Hence, there are $\varphi(m)$ columns of numbers relatively prime to $m$. If we can show that there are $\varphi(n)$ numbers in each such column which are relatively prime to $n$ we are done.\\
+Assume that $\gcd(r, m)=1$. Consider the set of $n$ integers in the $r$th column
+\begin{equation*}
+R = \{km + r : k=0, \dots (n-1)\}
+\end{equation*}
+We claim that these are pairwise incongruent modulo $n$. Assume that $0\leq k_1 < k_2 \leq n-1$ and that 
+\begin{equation*}
+k_1m + r\equiv k_2m + r[n]
+\end{equation*}
+Subtracting $r$ and canceling $m$ from both sides of the equation results in 
+\begin{equation*}
+k_1\equiv k_2[n],
+\end{equation*}
+which is a contradiction. Thus, our claim holds and the numbers in $R$ are congruent modulo $n$ to $0, 1, \dots, n-1$ in some order.\\
+We note that if $s\equiv t[n]$ and $\gcd(s, n)=1$, then $\gcd(t, n)=1$. Hence, the number of integers in $R$ relatively prime to $n$ are $\varphi(n)$, which is what we wanted to show.
+\end{proof}
 \end{thm}
 %%%%%%%%%%% ADD PROOF HERE %%%%%%%%%%%%%%%%
 \begin{thm}
@@ -667,15 +722,50 @@ M\"{o}bius inverse: \[ n= \sum_{d \mid n} \mu(\frac{n}{d}) \sigma(d)\]
 \Large
 \textbf{Number Theory}\\
 \normalsize
-\textbf{November 18}\\
+\textbf{November xx}\\
 2014\\
 }
 \vspace{10mm}
-\begin{defi} The \textbf{order} of $a[n]$ is the smallest positive integer $k$ such that:
+\underline{Lemma :} Let $n>1$, and $\gcd(a, n)=1$. If 
+\begin{equation*}
+a_1, \dots, a_{\varphi(n)}\in [1, n)
+\end{equation*} 
+are the positive integers which are relatively prime to $n$, then 
+\begin{equation*}
+aa_1, \dots, a_{\varphi(n)}
+\end{equation*}
+are congruent to $a_1, \dots, a_{\varphi(n)}$ in some order.
+\begin{proof}
+	We claim that the $aa_i$s are pairwise incongruent. Assume that
+\begin{equation*}
+aa_i\equiv aa_j[n], \quad i<j.
+\end{equation*}
+Since $\gcd(a, n) = 1$, $a_i\equiv a_j[n] \Rightarrow a_i=a_j \Rightarrow i=j$.\\
+As $\gcd(a, n)=1$ and $\gcd(a_i, n) = 1$, we have that $\gcd(aa_i, n)=1$. Let 
+\begin{equation*}
+aa_i\equiv b[n].
+\end{equation*}
+Then 
+\begin{equation*}
+1=\gcd(aa_i, n) = \gcd(b, n),,
+\end{equation*}
+so $b=a_j$ for some j.
+\end{proof}
+
+\newpage
+{\centering
+	\Large
+	\textbf{Number Theory}\\
+	\normalsize
+	\textbf{November 18}\\
+	2014\\
+}
+\vspace{10mm}
+\begin{defi} The \textbf{order} of $a[n]$ is the smallest positive integer $k$ such that
 																\[ a^k \equiv 1 [n] \]
-						We write $k:= \ord_n(a)$
+						We write $k= \ord_n(a)$
 \end{defi}
-\underline{Example:} $a=2$ $n=7$\\
+\underline{Example:} $a=2$, $n=7$\\
 	$2^3=8 \equiv 1 [7]$\\
 	$2^1 \equiv 2, \; 2^2=4\equiv 1 [7]$\\
 
