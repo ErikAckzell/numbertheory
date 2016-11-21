@@ -732,11 +732,11 @@ a_1, \dots, a_{\varphi(n)}\in [1, n)
 \end{equation*} 
 are the positive integers which are relatively prime to $n$, then 
 \begin{equation*}
-aa_1, \dots, a_{\varphi(n)}
+aa_1, \dots, aa_{\varphi(n)}
 \end{equation*}
-are congruent to $a_1, \dots, a_{\varphi(n)}$ in some order.
+are congruent to $a_1, \dots, a_{\varphi(n)}$ modulo $n$ in some order.
 \begin{proof}
-	We claim that the $aa_i$s are pairwise incongruent. Assume that
+	We claim that the $aa_i$s are pairwise incongruent modulo $n$. Assume that
 \begin{equation*}
 aa_i\equiv aa_j[n], \quad i<j.
 \end{equation*}
@@ -751,7 +751,39 @@ Then
 \end{equation*}
 so $b=a_j$ for some j.
 \end{proof}
-
+\subsection*{Euler's theorem}
+Let $n>1$ and $\gcd(a, n)=1$. Then 
+\begin{equation*}
+a^{\varphi(n)}\equiv 1 [n]
+\end{equation*}
+\begin{proof}
+	Let $a_1, \dots, a_{\varphi(n)}$ be as in our previous lemma and write
+	\begin{equation*}
+	\left\{\begin{array}{lcl}
+	aa_1 & \equiv & a'_1 [n]\\
+	&\vdots\\
+	aa_{\varphi(n)} & \equiv & a'_{\varphi(n)} [n]\\
+	\end{array}\right.
+	\end{equation*}
+	so that after permutation, 
+	\begin{equation*}
+	\{a'_1, \dots, a'_{\varphi(n)}\} = \{a_1, \dots, a_{\varphi(n)}\}.
+	\end{equation*}
+We have that 
+\begin{equation*}
+(aa_1)\cdots(aa_{\varphi(n)})\equiv a'_1\cdots a'_{\varphi(n)}=a_1\cdots a_{\varphi(n)}[n]
+\end{equation*}
+implying that 
+\begin{equation*}
+a^{\varphi(n)}(a_1\cdots a_{\varphi(n)})\equiv 1\cdot (a_1\cdots a_{\varphi(n)}) [n].
+\end{equation*}
+As for each $i$, $\gcd(a_i, n)=1$, $\gcd(a_1\cdots a_{\varphi(n)}, n)=1$. Thus we can cancel the factors and obtain
+\begin{equation*}
+a^{\varphi(n)}\equiv 1[n],
+\end{equation*}
+which is what we wanted to show.
+\end{proof}
+\subsection*{Gauss' theorem}
 \newpage
 {\centering
 	\Large
