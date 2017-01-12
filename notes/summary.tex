@@ -1,0 +1,393 @@
+\documentclass{report}
+
+
+\usepackage[utf8]{inputenc}    
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}     
+\usepackage{comment}
+\usepackage{setspace}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{cancel}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\nequiv}{\cancel{\equiv}}
+\newcommand{\up}[1]{\textsuperscript{#1}}
+\DeclareMathOperator{\ord}{ord}
+
+\title{Summary: Number Theory}
+\begin{document}
+\newtheorem*{defi}{Definition}
+\newtheorem*{thm}{Theorem}
+\subsection*{Chinese remainder theorem}
+\[ 
+\text{Let  }
+\left.
+\begin{array}{r c l}
+n_1 \dots n_r \in \mathbb{N}\\
+a_1 \dots a_r \in \mathbb{Z}\\
+\end{array}
+\right/ \gcd(n_i,n_j)=1 \forall i \neq j
+\]
+then the  system
+$
+\left \{
+\begin{array}{r c l}
+x &\equiv& a_1[n_1]\\
+x &\equiv& a_2[n_2]\\
+\vdots &\vdots& \vdots\\
+x &\equiv& a_r[n_r]\\
+\end{array}
+\right.
+$ \\
+has a simultaneous solution which is unique modulo $n_1 \cdot n_2 \dots n_r$
+\[
+\Rightarrow f(x) \equiv 0[n] \text{ with  } n = p_1^{k_1} \dots p_r^{k_r} \qquad 
+\left \{
+\begin{array}{r c l}
+f(x) &\equiv& 0[p_1^{k_1}]\\
+&\vdots&\\
+f(x) &\equiv& 0[p_r^{k_r}]\\
+\end{array}
+\right.
+\]
+Set 
+\[
+n=n_1 \dots n_r
+\]
+And
+\[
+N_k=\frac{n}{n_k}=n_1 n_2 \dots n_{k-1} n_{k+1} \dots n_r
+\]
+Then, $N_k x_k \equiv 1 [n_k]$\\
+\[
+N_k x_k + n_k y_k = 1, \text{exists because } \gcd(N_k, n_k)=1
+\]
+And if we set $\bar{x} \equiv \sum_{k=1}^{r}a_k N_k x_k \equiv a_k [n_k]$, then $\bar{x}$ is a simultaneous solution.\\
+
+\subsection*{Fermat's theorem}
+Let $p$ be a prime, $a \in \mathbb{Z} / \quad p \cancel{\mid} a$. Then,
+\[ a^{p-1} \equiv 1 [p] \]
+
+\subsection*{Wilson's theorem}
+If $p$ is a prime, then $(p-1)! \equiv -1[p]$
+
+\subsection*{Number and sum of divisors}
+\[
+\begin{array}{l c l}
+&\tau(n)& = \sum_{d \mid n}1 \text{,   the number of positive divisors of n.}\\
+&\sigma(n)&= \sum_{d \mid n}d \text{,   the sum of the positive divisors of n.}\\
+\end{array}
+\]
+
+\begin{thm} Let $n>1$ with $n=p_1^{k_1} \cdots p_r^{k_r}$. Then \\
+	\begin{enumerate}
+		\item $\tau(n)=(k_1+1) \cdots (k_r+1)$
+		\item $\sigma(n)=(\frac{p_1^{k_1+1}-1}{p_1-1})\dots(\frac{p_r^{k_r+1}-1}{p_r-1})$
+	\end{enumerate}
+\end{thm}
+
+\begin{thm} Let f be a multiplicative number theoretic function and define $F(n)$ by:
+	\[F(n)= \sum_{d\mid n} f(d), \qquad n \geq 1 \]
+	Then $F$ is also a multiplicative number theoretic function.
+\end{thm}
+
+\underline{Corollary :} $\sigma$ and $\tau$ are multiplicative\\
+
+\subsection*{M\"{o}bius function $\mu$}
+	\[ \mu(n)= 	\left \{
+	\begin{array}{lcl}
+	1 \quad \qquad\text{ if } n=1\\
+	0 \quad \qquad \text{ if } \exists p \text{ prime such that } p^2 \mid n\\
+	(-1)^r \quad \text{ if }n=p_1p_2 \dots p_r \text{,  with distinct primes.}
+	\end{array}
+	\right.
+	\]
+\begin{thm}
+	$\mu$ is multiplicative.
+	\end{thm}
+
+\begin{thm}
+	For $n\geq1$,
+	\[ \sum_{d \mid n} \mu(d) = \left \{
+	\begin{array}{lcl}
+	1 \quad \text{if } n=1\\
+	0 \quad \text{if }n>1\\
+	\end{array}
+	\right.
+	\]
+	\end{thm}
+\subsection*{M\"{o}bius inversion formula}
+Let $F$ and $f$ be connected by \[F(n)=\sum_{d \mid n} f(d).\]
+Then 
+\[ f(n)=\sum_{d\mid n} \mu(d) F(\frac{n}{d}) = \sum_{d \mid n} \mu(\frac{n}{d}) F(d)\]
+	
+\begin{thm}
+	Let $f$, $F$ be connected by:
+	\[F(n)=\sum_{d \mid n} f(d)\]
+	If $F$ is multiplicative, then $f$ is multiplicative.
+\end{thm}
+
+\subsection*{Euler's $\varphi$ function} 
+\[\varphi(n)=\mid \{ a \in \mathbb{Z} :1 \leq a \leq n,\quad \gcd(a,n)=1 \} \mid \]
+\begin{thm}
+	For $p$ prime, $k>0$:
+	\[\varphi(p^k)=p^k-p^{k-1}=p^k(1-\frac{1}{p})\]
+\end{thm}
+\begin{thm} $\varphi$ is multiplicative.
+\end{thm}
+\underline{Lemma :} Let $n>1$, and $\gcd(a, n)=1$. If 
+\begin{equation*}
+a_1, \dots, a_{\varphi(n)}\in [1, n)
+\end{equation*} 
+are the positive integers which are relatively prime to $n$, then 
+\begin{equation*}
+aa_1, \dots, aa_{\varphi(n)}
+\end{equation*}
+are congruent to $a_1, \dots, a_{\varphi(n)}$ modulo $n$ in some order.
+\subsection*{Euler's theorem}
+Let $n>1$ and $\gcd(a, n)=1$. Then 
+\begin{equation*}
+a^{\varphi(n)}\equiv 1 [n]
+\end{equation*}
+\underline{Lemma :} For $n\geq 1$, let
+\begin{equation*}
+S_d = \{m: \quad 1\leq m\leq n,\quad \gcd(m, n)=d\}.
+\end{equation*}
+Then 
+\begin{equation*}
+\{1, 2, \dots, n\} = \bigcup_{d \mid n}S_d
+\end{equation*}
+and the union is disjoint.
+\subsection*{Gauss' theorem}
+For $n\geq 1$, 
+\begin{equation*}
+\sum_{d\mid n}\varphi(d)=n
+\end{equation*}
+\begin{thm}
+	For $n\geq 1$,
+	\begin{equation*}
+	\varphi(n) = n\sum_{d\mid n}\frac{\mu(d)}{d}
+	\end{equation*}
+\end{thm}
+\begin{thm} Let $\ord_n(a)=k$, then:
+	\[\begin{array}{lcl}
+	a^i\equiv a^j[n]\\
+	\iff i=j[k]\\
+	\end{array}
+	\]
+\end{thm}
+\begin{thm}
+	Let $\ord_n(a)=k, h>0$\\
+	Then $a^h$ has order $\ord_n(a^h)= \frac{k}{\gcd(h,k)}$\\
+\end{thm}
+
+\underline{\textbf{Lagrange's theorem:}} Let p be a prime, and $f$ such that:
+\[f(x)=a_nx^n+\dots+a_1x+a_0,\quad a_i\in \mathbb{Z}, \quad a_n \nequiv 0[p]\]
+Then  $f(x) \equiv 0[p]$ has at most $n$ incongruent solutions.
+\textbf{Corollary:} For $p$ prime, $d\mid p-1$: \[x^d-1\equiv0[p]\]
+has exactly $d$ incongruent solutions.
+\begin{thm} Let $p$ be a prime, $d\mid p-1$, then there are exactly $\varphi(d)$ incongruent integers of order $d$ modulo p.
+\end{thm}
+\textbf{Corollary:} A prime $p$ has exactly $\varphi(p-1)$ primitive roots.\\
+\underline{Application:} $p\equiv 1[4] \Rightarrow x^2\equiv -1[p]$ has a solution.\\
+Take $d=4$ in the theorem: $4 \mid p-1$\\
+Then there exists an $a$ of order 4 modulo $p$.\\
+\[p \mid (a^4-1)=(a^2-1)(a^2+1)\]
+\[p \mid a^2-1 \text{  or  } \mid a^2+1\]
+\[\Rightarrow \left. \begin{array}{lcl}
+a^2 \equiv 1[p]\\
+a^2 \equiv -1[p]
+\end{array}
+\right \} x=a \text{ is a solution to   } x^2 \equiv -1[p]\]
+\underline{Lemma:} $p$ an odd prime, there is a primitive element $r [p]$ such that:\\
+\[r^{p-1} \nequiv 1[p^2]\]
+\begin{thm} $k\geq 1$, $\forall p$ odd prime, $\exists r[p^k]$ a primitive root.
+\end{thm}
+\begin{defi} For $\gcd(a,n)=1$, the \textbf{index} of $a$ in the base $r$ is the smallest positive integer $h$ such that:\[a \equiv r^h[n] \]
+	\[ind_r(a)=h\]
+	If $a\equiv b[n]$ then $ind(a)=ind(b)$
+\end{defi}
+\begin{thm} $n,r$ as above.
+	\begin{itemize}
+		\item[a)] $ind_r(a,b)\equiv ind_r(a)+ind_r(b)[\varphi(n)]$
+		\item[b)] $ind_r(a^k) \equiv k \cdot ind_r(a)[\varphi(n)]$
+		\item[c)] $ind_r(1)\equiv 0$
+		\item[d)] $ind_r(r)\equiv 1[\varphi(n)]$
+	\end{itemize}			
+\end{thm}
+\underline{\textbf{Euler's criterion:}} Let $p$ be an odd prime, and $p \nmid a$. \\Then $a$ is a quadric residue iff:\[a^{\frac{p-1}{2}}\equiv 1[p]\]
+\begin{thm} $p$ an odd prime, $p\nmid a$, $p\nmid b$. Then:
+	\begin{itemize}
+		\item[a)] $a\equiv b[p] \Rightarrow (a/p)=(b/p)$
+		\item[b)] $(a^2/p)=1$
+		\item[c)] $(a/p)\equiv a^\frac{p-1}{2}[p]$
+		\item[d)] $(ab/p)\equiv (a/p)(b/p)$
+		\item[e)] $(1/p)=1 \qquad (-1/p)=(-1)^\frac{p-1}{2}$
+	\end{itemize}
+\end{thm}
+\textbf{Corollary:}\[(-1/p)=\left \{ \begin{array}{lcl}
+1\\
+-1\\
+\end{array}
+\right. \iff 
+\begin{array}{lcl}
+p\equiv 1[4]\\
+p\equiv 3[4]\\
+\end{array}\]
+\begin{thm}There are infinitely many primes of the form $4k+1$\end{thm}
+\begin{proof}: Assume $p_1 \dots p_n$ are all the primes $\equiv 1[4]$, and set:
+	\[ N=(2p_1p_2\dots p_n)^2+1\]
+	Let $p$ be a factor in $N$, then $p$ is odd since $N$ is odd.
+	\[\begin{array}{lcl}
+	p\mid N, \; N\equiv 0[p]\\
+	(2p_1p_2\dots p_n)^2+1\equiv 0[p]\\
+	\Rightarrow (2p_1\dots p_n)^2\equiv -1[p]\\
+	\Rightarrow (-1/p)=1\\
+	\Rightarrow p\equiv 1[4]\\
+	\Rightarrow p \mid N-(2p_1\dots p_n)=1\text{: absurd!}
+	\end{array}
+	\]
+	Hence there exists infinitely many primes $\equiv 1[4]$.
+\end{proof}						
+\underline{\textbf{Gauss's lemma:}} $p$ an odd prime, $p\nmid a$\\
+Let $n$ denote the number of elements in \[ S=\{a,2a,\dots,({\scriptstyle \frac{p-1}{2}})a\}\] whose remainders [p] lie in $(\frac{p}{2},p)$, then: \[(a/p)=(-1)^n\]
+\begin{thm} $p$ an odd prime, then:
+	\[(2/p)=\left \{
+	\begin{array}{lcl}
+	1 \text{ if } p\equiv \pm 1[8]\\
+	-1 \text{ if } p\equiv \pm 3[8]\\
+	\end{array}
+	\right.\]
+\end{thm}
+\textbf{Corollary:}$(2/p)=(-1)^\frac{p^2-1}{8}$
+\begin{thm}$p$ an odd prime.
+	\[\sum_{a=1}^{p-1} (a/p)=0\]
+	i.e. there are exactly $\frac{p-1}{2}$ quadric residues and $\frac{p-1}{2}$ quadric non residues $[p]$.\\
+\end{thm}
+\underline{\textbf{Gauss's quadratic reciprocity theorem:}}\\
+$p\neq q$ two odd primes, then: \[(p/q)(q/p)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}\]
+The exact proof is in the book.
+\textbf{Corollary:} $p\neq q$ two odd primes, then \[(p/q)(q/p)=\left \{ 
+\begin{array}{lcl}
+1 \text{ if }\: p \:\text{or} \:q \equiv 1[4]\\
+-1 \text{ if }\: p \:\text{or} \:q \equiv 3[4]\\
+\end{array} 
+\right.\]
+\textbf{Corollary:} $p\neq q$ two odd primes, then	\[(p/q)=\left\{ 
+\begin{array}{lcl}
+(q/p) \text{ if }\: p \:\text{or} \:q \equiv 1[4]\\
+-(q/p) \text{ if }\: p \:\text{or} \:q \equiv 3[4]\\
+\end{array}
+\right.\]
+\begin{thm} If $p\neq 3$ is an odd prime, then \[ (3/p)=\left\{
+	\begin{array}{lcl}
+	1 if p\equiv \pm 1 [12]\\
+	-1 if p\equiv \pm 5 [12]\\
+	\end{array}
+	\right.\]
+\end{thm}
+\underline{\textbf{Lemma:}} \[\text{If  }\left\{
+\begin{array}{lcl}
+m=a^2+b^2\\
+n=c^2+d^2
+\end{array}
+\right. \Rightarrow mn \;\text{is also a sum of two squares.}\]
+\underline{Thue's Lemma:} $p$ a prime, $a\in \mathbb{Z}$, $p\nmid a$\\
+Then $ax\equiv y [p]$ has a solution $x_0,y_0 \in \mathbb{Z}$/ 
+\[0<|x_0|<\sqrt{p},\qquad 0<|y_0|<\sqrt{p}\]
+\underline{\textbf{Fermat's theorem:}} An odd prime $p$ is a sum of 2 squares iff $p\equiv 1[4]$.\\
+\textbf{Proposition:} $p$ a prime of the form $4k+1$ can be represented uniquely as a sum of two squares.
+\begin{thm} Let $n\in \mathbb{N}$, $n=N^2m$, with m square free.\\
+	Then $n=a^2+b^2 \iff m$ contains no prime factor of the form $4k+3$
+\end{thm}
+\begin{thm} $\gcd(u_n,u_{n+1})=1 \qquad \forall n \geq 1$
+\end{thm}
+\underline{Proposition:} for $m\geq 2$, $n \geq 1$: \[u_{m+n}=u_{m-1}u_n+u_mu_{n+1}\]
+\begin{thm} For $m\geq 1$, $n \geq 1$ \[u_m\mid u_{mn}\]
+\end{thm}
+\begin{thm} The $\gcd$ of two Fibonacci numbers is a Fibonacci number: \[\gcd(u_m,u_n)=u_{\gcd(m,n)}\]
+\end{thm}
+\underline{\textbf{Lemma:}} Let $m=qn+r$, with $m,n,q,r \geq 1$, then:
+\[\gcd(u_m,u_n)=\gcd(u_r,u_n)\]
+\underline{Example:} \[\begin{array}{lcl}
+\frac{a}{b} = \frac{43}{13}\\
+43=3\cdot 13 +4\\
+13=3\cdot 4+1\\
+4=4\cdot 1
+\end{array}
+\vline
+\begin{array}{lcl}
+\frac{43}{13} = 3+\frac{4}{13}=3+\frac{1}{\frac{13}{4}}\\
+\frac{13}{4}=3+\frac{1}{4}=3+\frac{1}{4}{1}\\
+\frac{4}{1}=4
+\end{array}
+\]
+\[\Rightarrow \frac{43}{13}=3+\frac{1}{3+\frac{1}{4}}\]
+\[\Rightarrow \frac{13}{43}=0+\frac{1}{3+\frac{1}{3+\frac{1}{4}}}\]
+
+
+
+Notation: $[a_0;a_1,a_2,\dots,a_n]=a_0+\frac{1}{a_1+\frac{1}{\begin{array}{lcl}
+		&\scriptstyle{\vdots}& \qquad \scriptstyle{\vdots \qquad \vdots}\\
+		&&\scriptstyle{a_{n-1}+\frac{1}{a_n}}
+		\end{array}}}$
+\[\frac{13}{43}=[0;3,3,4]\]
+\begin{defi} $C_k=[a_0;a_1,a_2,\dots,a_k]_{1\leq k\leq n}$;  is called the $k$\up{th} convergent to $[a_0;a_1,\dots,a_k,\dots,a_n]$.
+\end{defi}
+\underline{Example:} \[	\left.
+\begin{array}{lcl}
+[0;3,3,4]\\
+C_0=0\\
+C_1=0+\frac{1}{3}=\frac{1}{3}\\
+C_2=0+\frac{1}{3+\frac{1}{3}}=\frac{3}{10}\\
+C_3=0+\frac{1}{3+\frac{1}{3+\frac{1}{4}}}=\frac{13}{43}
+\end{array}
+\right \} C_k=\frac{p_k}{q_k}\text{, with  }
+\left [
+\begin{array}{lll}
+p_0=a_0&q_0=1\\
+p_1=a_1a_0+1&q_1=a_1\\
+p_k=a_kp_{k-1}&q_k=a_kq_{k-1}+q_{k-2}\\
+\end{array}
+\right ]
+\]
+\begin{thm} The $k$\up{th} convergent $C_k=\frac{p_k}{q_k}$ with $p_k, q_k$ given by recursion.
+\end{thm}
+\underline{Convention:}
+\[\left \{
+\begin{array}{lcl}
+p_{-2}=0&q_{-2}=1\\
+p_{-1}=1&q_{-1}=0
+\end{array}
+\right.
+\left(
+\begin{array}{l|l|l|l|l|l|l}
+k&-2&-1&0&1&2&3\\ \hline
+a_k&.&.&0&3&3&4\\
+p_k&0&1&0&1&3&13\\
+q_k&1&0&1&3&10&43\\
+C_k&.&.&0&\frac{1}{3}&\frac{3}{10}&\frac{13}{43}
+\end{array}
+\right)
+\]
+\begin{thm}The convergents $\frac{p_k}{q_k}\qquad \scriptstyle{\forall k\leq n}$ satisfy:\[p_kq_{k-1}-p_{k-1}q_k=(-1)^{k-1}\]
+\end{thm}
+\underline{\textbf{Lemma:}}  $q_{k-1}\leq q_k$ for $A\leq k \leq n$ with a strict inequality for $k>1$.\\
+Hence $q_k\longrightarrow \infty$ as $k\longrightarrow \infty$.
+\begin{thm} The convergents satisfy:
+	\begin{itemize}
+		\item[a)] $C_0<C_2<C_2<\dots$
+		\item[b)] $C_1<C_3<C_5<\dots$
+		\item[c)] $C_{2s}<C_{2r-1} \quad \forall s\geq 0, r\geq 1.$
+	\end{itemize}
+\end{thm}
+\end{document}
+	
